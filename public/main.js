@@ -23,7 +23,7 @@ $(document).ready(function () {
             };
 
             draw(position);
-
+            // send to server
             socket.emit('draw', position);
         });
 
