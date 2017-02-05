@@ -11,13 +11,21 @@ var io = socket_io(server);
 io.on('connection', function (socket) {
     console.log("io server is connected");
 
+    // catch incoming 'draw' and broadcast it to all
     socket.on('draw', function (drawing) {
         console.log("start drawing");
 
         socket.broadcast.emit('beginDrawing', drawing);
-        console.log("server drawing function is working")
-    })
-})
+        console.log("server drawing function is working");
+    });
+
+    // catch incoming 'guess' and broadcast it to all
+    socket.on('guess', function (guessed) {
+        console.log("the user has guessed " + guessed);
+
+        socket.broadcast.emit('guess', guessed);
+    });
+});
 
 
 

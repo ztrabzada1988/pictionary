@@ -5,6 +5,7 @@ $(document).ready(function () {
     var pictionary = function () {
         var canvas, context, guessBox;
 
+        // Guesses function when Enter is pressed
         var onKeyDown = function (event) {
             if (event.keyCode != 13) {
                 return;
@@ -17,6 +18,9 @@ $(document).ready(function () {
         guessBox = $('#guess input');
         guessBox.on('keydown', onKeyDown);
 
+        socket.emit('guess', guessBox);
+
+        // Draw function - beginPath when evoked, run arc (circle with x and y position, radius and etc), fill the path
         var draw = function (position) {
             context.beginPath();
             context.arc(position.x, position.y, 6, 0, 2 * Math.PI);
@@ -50,12 +54,15 @@ $(document).ready(function () {
                 };
 
                 draw(position);
-                // send to server
-                socket.emit('draw', position);
             };
+
+            // send to server
+            socket.emit('draw', position);
         });
 
+        // catch data coming in from server and run functions accordingly
         socket.on('beginDrawing', draw);
+        socket.on('guess', guessBox)
 
     };
 
