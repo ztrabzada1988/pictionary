@@ -26,7 +26,7 @@ $(document).ready(function () {
             console.log("mouseup is activated");
         })
 
-
+        // move
         canvas.on('mouseover', function (event) {
 
             if (drawing == true) {
