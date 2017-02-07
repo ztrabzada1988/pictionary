@@ -5,20 +5,27 @@ $(document).ready(function () {
     var pictionary = function () {
         var canvas, context, guessBox;
 
+        // Previous guesses
+        var previousGuesses = function (guess) {
+            $('#previousGuesses').text("The last guess was: " + guess);
+        };
+
         // Guesses function when Enter is pressed
         var onKeyDown = function (event) {
             if (event.keyCode != 13) {
                 return;
             }
 
-            console.log(guessBox.val());
+            var inputGuess = guessBox.val();
+            console.log(inputGuess);
+            previousGuesses(inputGuess);
             guessBox.val('');
         };
 
         guessBox = $('#guess input');
         guessBox.on('keydown', onKeyDown);
-
         socket.emit('guess', guessBox);
+
 
         // Draw function - beginPath when evoked, run arc (circle with x and y position, radius and etc), fill the path
         var draw = function (position) {
@@ -62,7 +69,8 @@ $(document).ready(function () {
 
         // catch data coming in from server and run functions accordingly
         socket.on('beginDrawing', draw);
-        socket.on('guess', guessBox)
+        socket.on('guess', previousGuesses);
+
 
     };
 

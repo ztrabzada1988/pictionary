@@ -13,10 +13,8 @@ io.on('connection', function (socket) {
 
     // catch incoming 'draw' and broadcast it to all
     socket.on('draw', function (drawing) {
-        console.log("start drawing");
 
         socket.broadcast.emit('beginDrawing', drawing);
-        console.log("server drawing function is working");
     });
 
     // catch incoming 'guess' and broadcast it to all
