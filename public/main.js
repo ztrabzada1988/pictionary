@@ -27,7 +27,7 @@ $(document).ready(function () {
         socket.emit('guess', guessBox);
 
 
-        // Draw function - beginPath when evoked, run arc (circle with x and y position, radius and etc), fill the path
+        // Draw function: beginPath when evoked, run arc (circle with x and y position, radius and etc), fill the path
         var draw = function (position) {
             context.beginPath();
             context.arc(position.x, position.y, 6, 0, 2 * Math.PI);
