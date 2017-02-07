@@ -10,7 +10,7 @@ $(document).ready(function () {
             $('#previousGuesses').text("The last guess was: " + guess);
         };
 
-        // Guesses function when Enter is pressed
+        // Guesses function when "Enter" is pressed
         var onKeyDown = function (event) {
             if (event.keyCode != 13) {
                 return;
@@ -70,8 +70,6 @@ $(document).ready(function () {
         // catch data coming in from server and run functions accordingly
         socket.on('beginDrawing', draw);
         socket.on('guess', previousGuesses);
-
-
     };
 
     pictionary();
