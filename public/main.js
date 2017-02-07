@@ -10,7 +10,7 @@ $(document).ready(function () {
             $('#previousGuesses').text("The last guess was: " + guess);
         };
 
-        // Guesses function when "Enter" is pressed
+        // Guesses function when "Enter" is pressed on
         var onKeyDown = function (event) {
             if (event.keyCode != 13) {
                 return;
