@@ -23,6 +23,7 @@ $(document).ready(function () {
         };
 
         guessBox = $('#guess input');
+        console.log(guessBox);
         guessBox.on('keydown', onKeyDown);
         socket.emit('guess', guessBox);
 
